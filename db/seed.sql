@@ -1,4 +1,4 @@
-\transactions_dev;
+\c transactions_dev;
 
 INSERT INTO transactions (name, amount, date, origin, category) VALUES
 ('Uber', 17, 'May 25, 2023', 'bank', 'transportation'),
