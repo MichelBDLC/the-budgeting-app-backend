@@ -23,12 +23,12 @@ const getTransaction = async id => {
 const createTransaction = async transaction => {
     try {
         const newStyle = await db.one (
-            'INSERT INTO transactions (name, amount, date, from, category) VALUES ($1, $2, $3, $4, $5) RETURNING *',
+            'INSERT INTO transactions (name, amount, date, origin, category) VALUES ($1, $2, $3, $4, $5) RETURNING *',
             [
                 transaction.name,
                 transaction.amount,
                 transaction.date,
-                transaction.from,
+                transaction.origin,
                 transaction.category
             ]
         );
@@ -55,12 +55,12 @@ const deleteTransaction = async id => {
 const updateTransaction = async (id, style) => {
     try {
         const updatedTransaction = await db.one (
-            'UPDATE transactions SET name=$1, amount=$2, date=$3, from=$4, category=$5 WHERE id=$6 RETURNING *',
+            'UPDATE transactions SET name=$1, amount=$2, date=$3, origin=$4, category=$5 WHERE id=$6 RETURNING *',
             [
                 transaction.name,
                 transaction.amount,
                 transaction.date,
-                transaction.from,
+                transaction.origin,
                 transaction.category,
                 id
             ]
