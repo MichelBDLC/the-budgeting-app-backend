@@ -10,10 +10,12 @@
   },
   "name": "the-budgeting-app-backend",
   "version": "1.0.0",
-  "main": "index.js",
-  "devDependencies": {},
+  "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server.js",
+    "dbinit": "psql -U postgres -f db/schema.sql",
+    "dbseed": "psql -U postgres -f db/seed.sql"
   },
   "repository": {
     "type": "git",
