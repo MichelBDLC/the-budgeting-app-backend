@@ -22,7 +22,7 @@ const getTransaction = async id => {
 
 const createTransaction = async transaction => {
     try {
-        const newStyle = await db.one (
+        const theNewTransaction = await db.one (
             'INSERT INTO transactions (name, amount, date, origin, category) VALUES ($1, $2, $3, $4, $5) RETURNING *',
             [
                 transaction.name,
@@ -32,7 +32,7 @@ const createTransaction = async transaction => {
                 transaction.category
             ]
         );
-        return newTransaction;
+        return theNewTransaction;
     }
     catch (error) {
         return error;
@@ -42,7 +42,7 @@ const createTransaction = async transaction => {
 const deleteTransaction = async id => {
     try {
         const deletedTransaction = await db.one (
-            'DELETE FROM transaction WHERE id=$1 RETURNING *',
+            'DELETE FROM transactions WHERE id=$1 RETURNING *',
             id
         );
         return deletedTransaction;
@@ -52,7 +52,7 @@ const deleteTransaction = async id => {
     }
 };
 
-const updateTransaction = async (id, style) => {
+const updateTransaction = async (id, transaction) => {
     try {
         const updatedTransaction = await db.one (
             'UPDATE transactions SET name=$1, amount=$2, date=$3, origin=$4, category=$5 WHERE id=$6 RETURNING *',
