@@ -41,16 +41,12 @@ const createTransaction = async transaction => {
 
 const deleteTransaction = async id => {
     try {
-        const deletedTransaction = await db.one (
-            'DELETE FROM transactions WHERE id=$1 RETURNING *',
-            id
-        );
-        return deletedTransaction;
+      await db.none('DELETE FROM transactions WHERE id = $1', id);
+      return { success: true }; // Return a success response if deletion is successful
+    } catch (error) {
+      return error;
     }
-    catch (error) {
-        return error;
-    }
-};
+  };  
 
 const updateTransaction = async (id, transaction) => {
     try {

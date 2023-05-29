@@ -37,15 +37,15 @@ transactions.get('/:id', async (request, response) => {
 transactions.post('/', async (request, response) => {
     if (request.body) {
         try {
-            const newTransaction = await createTransaction(request.bodt);
+            const newTransaction = await createTransaction(request.body);
             response.status(201).json(newTransaction);
         }
         catch (error) {
-            response.status(500).json({ error: 'Failed to create transaction'});
+            response.status(500).json({ error: 'Failed to create transaction' });
         }
     }
     else {
-        response.status(400).json({error: 'Invalid request'});
+        response.status(400).json({ error: 'Invalid request' });
     }
 });
 
@@ -53,15 +53,15 @@ transactions.delete('/:id', async (request, response) => {
     const { id } = request.params;
 
     try {
-        const deletedTransaction = await deletedTransaction(id);
+        const deletedTransaction = await deleteTransaction(id);
         response.sendStatus(204);
     }
     catch (error) {
-        response.status(500).json({ error: "Failed to delete"});
+        response.status(500).json({ error: "Failed to delete" });
     }
 });
 
-transactions.put(':id', async (request, response) => {
+transactions.put('/:id', async (request, response) => {
     const { id } = request.params;
 
     if (request.body) {
@@ -69,7 +69,7 @@ transactions.put(':id', async (request, response) => {
         response.status(200).json(updatedTransaction);
     }
     else {
-        response.status(404).json({ error: "cannot update"});
+        response.status(404).json({ error: "cannot update" });
     };
 });
 
